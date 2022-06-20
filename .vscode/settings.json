@@ -3,6 +3,14 @@
     "npm",
     "http",
     "sequelize model",
-    "sequelize migration"
-  ]
+    "sequelize migration",
+    "errors",
+    "rotas",
+    "controller",
+    "JWT",
+    "services",
+    "middleware"
+  ],
+  "conventionalCommits.gitmoji": false,
+  "conventionalCommits.promptFooter": false
 }
