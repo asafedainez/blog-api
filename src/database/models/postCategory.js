@@ -23,10 +23,14 @@ const PostCategorySchema = (sequelize, DataTypes) => {
     }
   );
 
-  PostCategoryTable.associate = (models) => {
-    PostCategoryTable.belongsToMany(models.BlogPost);
-    PostCategoryTable.belongsToMany(models.Category);
-  };
+  // PostCategoryTable.associate = (models) => {
+  //   PostCategoryTable.belongsToMany(models.BlogPost, {
+  //     through: 'BlogPost',
+  //   });
+  //   PostCategoryTable.belongsToMany(models.Category, {
+  //     through: 'Category',
+  //   });
+  // };
 
   return PostCategoryTable;
 };
