@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 
 // ...
+app.use('/login', require('./routes/login.routes'));
 app.use(require('./middleware/error.middleware'));
 
 // É importante exportar a constante `app`,
