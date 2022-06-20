@@ -18,6 +18,12 @@ const create = async (data) => {
   return generateToken({ id, email });
 };
 
+const getAll = async () => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  return users;
+};
+
 module.exports = {
   create,
+  getAll,
 };
