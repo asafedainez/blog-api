@@ -8,7 +8,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const generateToken = (data) => jwt.sign(data, secret, jwtConfig);
+const generateToken = (data) => jwt.sign({ data }, secret, jwtConfig);
 
 const verifyToken = async (token) => {
   try {

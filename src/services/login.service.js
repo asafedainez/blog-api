@@ -14,9 +14,8 @@ const authentication = async (user, password) => {
     throw error;
   }
 
-  return jwt.generateToken({
-    data: { id: userFound.id, email: userFound.email },
-  });
+  const { id, email } = userFound;
+  return jwt.generateToken({ id, email });
 };
 
 module.exports = { authentication };
