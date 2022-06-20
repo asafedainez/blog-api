@@ -20,7 +20,14 @@ const getAll = async (req, res) => {
   return res.status(httpStatus.OK).json(users);
 };
 
+const getUser = async (req, res) => {
+  const user = await service.getUser(req.params.id);
+
+  return res.status(httpStatus.OK).json(user);
+};
+
 module.exports = {
   insertUser,
   getAll,
+  getUser,
 };
