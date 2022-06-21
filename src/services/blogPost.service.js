@@ -50,10 +50,28 @@ const getAll = async () => {
       { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
+
+  return result;
+};
+
+const getById = async (id) => {
+  const result = await BlogPost.findByPk(id, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ], 
+  });
+
+  if (!result) {
+    const error = { status: httpStatus.NOT_FOUND, message: 'Post does not exist' };
+    throw error;
+  }
+
   return result;
 };
 
 module.exports = {
   create,
   getAll,
+  getById,
 };
