@@ -11,7 +11,7 @@ const httpStatus = require('../utils/http');
       });
     }
 
-    await jwt.verifyToken(token);
+    jwt.verifyToken(token);
 
     next();
   };

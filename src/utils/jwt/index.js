@@ -10,9 +10,9 @@ const jwtConfig = {
 
 const generateToken = (data) => jwt.sign({ data }, secret, jwtConfig);
 
-const verifyToken = async (token) => {
+const verifyToken = (token) => {
   try {
-    const decoded = await jwt.verify(token, secret);
+    const decoded = jwt.verify(token, secret);
     return decoded;
   } catch (e) {
     const error = {
