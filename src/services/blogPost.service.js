@@ -70,8 +70,24 @@ const getById = async (id) => {
   return result;
 };
 
+const update = async (data) => {
+  const { id, title, content, userId } = data;
+
+  const result = await BlogPost.findByPk(id);
+  if (result.userId !== userId) {
+    const error = { status: httpStatus.UNAUTHORIZED, message: 'Unauthorized user' };
+    throw error;
+  }
+  
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  const postUpdated = await getById(id);
+  return postUpdated;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };
