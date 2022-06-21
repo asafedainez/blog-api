@@ -22,8 +22,19 @@ const getById = async (req, res) => {
   return res.status(httpStatus.OK).json(post);
 };
 
+const update = async (req, res) => {
+  const { title, content } = req.body;
+  const { id } = req.params;
+  const jwtToken = req.headers.authorization;
+  const userData = verifyToken(jwtToken).data;
+
+  const postUpdated = await service.update({ id, title, content, userId: userData.id });
+  return res.status(httpStatus.OK).json(postUpdated);
+};
+
 module.exports = { 
   create, 
   getAll,
   getById,
+  update,
 };
