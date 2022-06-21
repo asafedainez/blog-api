@@ -11,6 +11,12 @@ const create = async (req, res) => {
   return res.status(httpStatus.CREATED).json(post);
 };
 
+const getAll = async (req, res) => {
+  const posts = await service.getAll();
+  return res.status(httpStatus.OK).json(posts);
+};
+
 module.exports = { 
   create, 
+  getAll,
 };
