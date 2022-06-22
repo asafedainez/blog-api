@@ -8,7 +8,7 @@ const sequelize = new Sequelize(sequelizeConfig.development);
 const verifyIfCategoryExists = async (categoryIds) => {
   const result = await Promise.all(
     categoryIds.map((categoryId) => (
-      PostCategory.findOne({ where: { categoryId } })
+      Category.findByPk(categoryId)
     )),
   );
 
