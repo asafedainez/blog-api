@@ -10,5 +10,6 @@ Routes.get('/', jwtTokenMiddleware, controller.getAll);
 Routes.get('/:id', jwtTokenMiddleware, controller.getById);
 Routes.post('/', jwtTokenMiddleware, blogPostMiddleware, controller.create);
 Routes.put('/:id', jwtTokenMiddleware, blogPostUpdateMiddleware, controller.update);
+Routes.delete('/:id', jwtTokenMiddleware, controller.deletePost);
 
 module.exports = Routes;
