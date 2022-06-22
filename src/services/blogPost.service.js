@@ -101,10 +101,28 @@ const deletePost = async (id, userId) => {
   await BlogPost.destroy({ where: { id } });
 };
 
+const search = async (searchTerm) => {
+  const result = await BlogPost.findAll({
+    where: {
+      [Sequelize.Op.or]: [
+        { title: { [Sequelize.Op.like]: `%${searchTerm}%` } },
+        { content: { [Sequelize.Op.like]: `%${searchTerm}%` } },
+      ],
+    },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  return result;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
   deletePost,
+  search,
 };
