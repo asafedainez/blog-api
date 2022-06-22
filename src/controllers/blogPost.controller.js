@@ -32,9 +32,20 @@ const update = async (req, res) => {
   return res.status(httpStatus.OK).json(postUpdated);
 };
 
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+  const { authorization: jwtToken } = req.headers;
+  const userData = verifyToken(jwtToken).data;
+
+  await service.deletePost(id, userData.id);
+
+  res.status(httpStatus.NOT_CONTENT).send();
+};
+
 module.exports = { 
   create, 
   getAll,
   getById,
   update,
+  deletePost,
 };
