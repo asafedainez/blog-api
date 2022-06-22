@@ -1,5 +1,6 @@
 const httpStatus = require('../utils/http');
 const service = require('../services/user.service');
+const { verifyToken } = require('../utils/jwt');
 
 const insertUser = async (req, res) => {
   const { displayName, email, password, image } = req.body;
@@ -26,8 +27,16 @@ const getUser = async (req, res) => {
   return res.status(httpStatus.OK).json(user);
 };
 
+const deleteUser = async (req, res) => {
+  const { data: { id } } = verifyToken(req.headers.authorization);
+  await service.deleteUser(id);
+  
+  return res.status(httpStatus.NOT_CONTENT).end();
+};
+
 module.exports = {
   insertUser,
   getAll,
   getUser,
+  deleteUser,
 };
