@@ -7,6 +7,7 @@ const {
 } = require('../middleware/blogPost.middleware');
 
 Routes.get('/', jwtTokenMiddleware, controller.getAll);
+Routes.get('/search', jwtTokenMiddleware, controller.search);
 Routes.get('/:id', jwtTokenMiddleware, controller.getById);
 Routes.post('/', jwtTokenMiddleware, blogPostMiddleware, controller.create);
 Routes.put('/:id', jwtTokenMiddleware, blogPostUpdateMiddleware, controller.update);
