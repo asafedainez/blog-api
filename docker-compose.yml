@@ -10,7 +10,7 @@ services:
     container_name: blogs_api
     tty: true
     stdin_open: true
-    command: bash
+    command: bash -c 'npm run prestart && npm run seed && npm run debug'
     restart: always
     depends_on:
       - db

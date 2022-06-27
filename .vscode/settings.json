@@ -11,7 +11,8 @@
     "services",
     "middleware",
     "segurança",
-    "sequelize seed"
+    "sequelize seed",
+    "docker"
   ],
   "conventionalCommits.gitmoji": false,
   "conventionalCommits.promptFooter": false
