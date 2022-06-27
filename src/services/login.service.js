@@ -1,3 +1,4 @@
+const md5 = require('crypto-js/md5');
 const jwt = require('../utils/jwt');
 const { User } = require('../database/models');
 const httpStatus = require('../utils/http');
@@ -8,7 +9,8 @@ const error = {
 };
 
 const authentication = async (user, password) => {
-  const userFound = await User.findOne({ where: { email: user, password } });
+  const passwordHash = md5(password).toString();
+  const userFound = await User.findOne({ where: { email: user, password: passwordHash } });
 
   if (!userFound) {
     throw error;

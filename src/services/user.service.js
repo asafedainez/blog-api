@@ -1,9 +1,11 @@
+const md5 = require('crypto-js/md5');
 const { User } = require('../database/models');
 const { generateToken } = require('../utils/jwt');
 const httpStatus = require('../utils/http');
 
 const create = async (data) => {
-  const userFound = await User.findOne({ where: { email: data.email } });
+  const { displayName, email, password, image } = data;
+  const userFound = await User.findOne({ where: { email } });
 
   if (userFound) {
     const error = {
@@ -12,9 +14,11 @@ const create = async (data) => {
     };
   throw error;
   }
+
+  const passwordHash = md5(password).toString();
   
-  const user = await User.create(data);
-  const { id, email } = user;
+  const user = await User.create({ displayName, email, password: passwordHash, image });
+  const { id } = user;
   return generateToken({ id, email });
 };
 
